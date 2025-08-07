@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class MaterialBiblioteca():
+class MaterialBiblioteca(ABC):
     def __init__(self, id, titulo, autor, estado):
         self.__id = id
         self.__titulo = titulo
@@ -26,7 +26,7 @@ class MaterialBiblioteca():
     def getId(self):
         return self.__id
     
-    def gettitulo(self):
+    def getTitulo(self):
         return self.__titulo
 
     def getAutor(self):
@@ -46,8 +46,5 @@ class MaterialBiblioteca():
     @abstractmethod
     def MostrarInformacion():
         pass
-    
-if __name__ == "__main__":
-    MiMaterial = MaterialBiblioteca()
     
 
