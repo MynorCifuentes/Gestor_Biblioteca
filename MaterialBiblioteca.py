@@ -37,7 +37,7 @@ class MaterialBiblioteca(ABC):
     
     @abstractmethod
     def PrestarMaterial():
-        pass
+        pass  
     
     @abstractmethod
     def DevolverMaterial():
