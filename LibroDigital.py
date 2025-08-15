@@ -10,6 +10,6 @@ class LibroDigital(MaterialBiblioteca):
     def DevolverMaterial():
         pass
     
-    def MostrarInformacion():
-        pass
-
+    def MostrarInformacion(self):
+        super().MostrarInformacion()
+        print(f'Tamaño: {self.__size} MB')
