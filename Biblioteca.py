@@ -6,8 +6,8 @@ from ListaMaterial import *
 class Biblioteca:
     pass
 
-ListaLibroFisico = listaMaterial()
-ListaLibroDigital = listaMaterial()
+listaLibroFisico = listaMaterial()
+listaLibroDigital = listaMaterial
 
 def menu_principal():
     print("\n---------------------Bienvenido a la Biblioteca IPC2---------------------")
@@ -48,12 +48,28 @@ def menu_informacion_material():
     print("4] Volver al menú Gestión de Material")
 
 def registroLibroFisico():
-    pass
-
+    id = "###############"
+    titulo = input("Ingrese el título: ")
+    autor = input(" Ingrese el autor: ")
+    estado = "Disponible"
+    noEjemplar = "1" #Se tiene que agregar de manera automatica
+    libroFisico = LibroFisico(id,titulo,autor,estado,noEjemplar)
+    listaLibroFisico.agregar(libroFisico)
+    print(f'El libro, Titulo: {titulo}, Autor: {autor} ha sido agregado exitosamente.')
+    
 def registroLibroDigital():
-    pass    
+    id = "###############"
+    titulo = input("Ingrese el título: ")
+    autor = input("Ingrese el autor: ")
+    size = input("Ingrese el tamaño del libro digital: ")
+    estado = "Disponible"
+    libroDigital = LibroDigital(id,titulo,autor,estado, size) #El tamaño se debe ingresar
+    listaLibroDigital.agregar(libroDigital)
+    print(f'El libro, Titulo: {titulo}, Autor: {autor} ha sido agregado exitosamente.')
 
 def prestarLibroFisico():
+    #Cambia el estado del objeto a "Prestado"
+    
     pass
 
 def prestarLibroDigital():
@@ -66,15 +82,16 @@ def devolverLibroDigital():
     pass
 
 def informacionLibroFisico():
-    pass
+    listaLibroFisico.mostrar_todos()
 
 def informacionLibroDigital():
-    pass
+    listaLibroDigital.mostrar_todos()
 
 def informacionTodo():
+
     pass
 
-def main():
+def main(): #Funcion Principal 
     while True:  
         menu_principal()
         opcion = input("Seleccione una opción: ")
@@ -82,11 +99,11 @@ def main():
             while True:
                 menu_registro_material()
                 OpcionRegistro = input("¿Qué tipo de libro desea registrar?")
-                if OpcionRegistro == "1":
+                if OpcionRegistro == "1": #Registro libro fisico
                     registroLibroFisico()
-                elif OpcionRegistro == "2":
+                elif OpcionRegistro == "2": #Registro libro digital
                     registroLibroDigital()
-                elif OpcionRegistro == "3":
+                elif OpcionRegistro == "3": #Salir
                     break
                 else:
                     print("\nOpción no válida.")
@@ -103,7 +120,7 @@ def main():
                             prestarLibroFisico()
                         elif OpcionPrestamo == "2": #Prestamo libro digital
                             prestarLibroDigital()
-                        elif OpcionPrestamo == "3":
+                        elif OpcionPrestamo == "3": #Salir
                             break
                         else:
                             print("\nOpción no válida.")
@@ -115,7 +132,7 @@ def main():
                             devolverLibroFisico()
                         elif OpcionDevolver == "2": #Devolver libro digital
                             devolverLibroDigital()
-                        elif OpcionDevolver == "3":
+                        elif OpcionDevolver == "3": #Salir
                             break
                         else:
                             print("\nOpción no válida.")
@@ -129,15 +146,15 @@ def main():
                             informacionLibroDigital()
                         elif OpcionInformacion == "3": #Informacion Catálogo Completo
                             informacionTodo()
-                        elif OpcionInformacion == "4":
+                        elif OpcionInformacion == "4": #Salir
                             break
                         else:
                             print("\nOpción no válida.")
-                elif opcionGestion == "4":
+                elif opcionGestion == "4": #Salir
                     break
                 else:
                     print("Opción no válida.")
-        elif opcion == "3":
+        elif opcion == "3": #Salir
             print("¡Gracias por visitar la Biblioteca IPC2!")
             break
         else:

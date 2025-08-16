@@ -4,21 +4,21 @@ class listaMaterial:
     def __init__(self):
         self.cabeza = None
     
-    def agregar(self,libro):
-        nuevoLibro = Nodo(libro)
+    def agregar(self,material):
+        nuevoMaterial = Nodo(material)
         if not self.cabeza:
-            self.cabeza = nuevoLibro
-        else: 
+            self.cabeza = nuevoMaterial
+        else:
             actual = self.cabeza
             while actual.siguiente:
                 actual = actual.siguiente
-            actual.siguiente = nuevoLibro
+            actual.siguiente = nuevoMaterial
 
     def buscar(self, titulo):
         actual = self.cabeza
         while actual:
-            if actual.libro.titulo == titulo:
-                return actual.libro
+            if actual.material.titulo == titulo:
+                return actual.material
             actual = actual.siguiente
 
         return 'No se encontro el titulo que busca'

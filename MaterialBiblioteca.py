@@ -6,9 +6,6 @@ class MaterialBiblioteca(ABC):
         self.__titulo = titulo
         self.__autor = autor
         self.__estado = estado
-        
-    def __init__(self):
-        pass
     
     def setId(self, id):
         self.__id = id    
