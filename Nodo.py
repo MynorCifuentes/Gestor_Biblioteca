@@ -1,3 +1,4 @@
-def __init__(self, material):
-    self.material = material
-    self.siguiente = None
+class Nodo:
+    def __init__(self, material):
+        self.material = material
+        self.siguiente = None
