@@ -29,7 +29,6 @@ Atributos:
 * Tamaño Archivo (MB) \
 Este tipo de libro puede ser prestado por un máximo de 3 días
 
-
 Para hacer funcional el sistema, debe implementarse un menú interactivo en consola que permita:
 
 * Registrar nuevos materiales (fisicos o digitales)
@@ -39,8 +38,3 @@ Para hacer funcional el sistema, debe implementarse un menú interactivo en cons
     * Consultar información de cada uno
 
 El sistema debe estar diseñado de  anera que se mantenga en ejecución hasta que el usuario decida salir. 
-
-
-
-
-

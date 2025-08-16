@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class MaterialBiblioteca(ABC):
     def __init__(self, id, titulo, autor, estado):
         self.__id = id
@@ -37,7 +36,7 @@ class MaterialBiblioteca(ABC):
     
     @abstractmethod
     def PrestarMaterial():
-        pass
+        pass  
     
     @abstractmethod
     def DevolverMaterial():
@@ -46,5 +45,3 @@ class MaterialBiblioteca(ABC):
     @abstractmethod
     def MostrarInformacion():
         pass
-    
-
