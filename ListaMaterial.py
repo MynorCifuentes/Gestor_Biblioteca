@@ -2,31 +2,40 @@ from Nodo import *
 
 class listaMaterial:
     def __init__(self):
-        self.cabeza = None
-    
-    def agregar(self,material):
-        nuevoMaterial = Nodo(material)
-        if not self.cabeza:
-            self.cabeza = nuevoMaterial
+        self.inicio = None
+
+    def agregarMaterial(self, material):
+        nuevo_nodo = Nodo(material)
+        if not self.inicio:
+            self.inicio = nuevo_nodo
         else:
-            actual = self.cabeza
+            actual = self.inicio
             while actual.siguiente:
                 actual = actual.siguiente
-            actual.siguiente = nuevoMaterial
+            actual.siguiente = nuevo_nodo
 
-    def buscar(self, titulo):
-        actual = self.cabeza
+    def obtenerPorPosicion(self, posicion):
+        actual = self.inicio
+        index = 1
         while actual:
-            if actual.material.titulo == titulo:
+            if index == posicion:
                 return actual.material
             actual = actual.siguiente
+            index += 1
+        return None
 
-        return 'No se encontro el titulo que busca'
-
-    def mostrar_todos(self):
-        actual = self.cabeza
-        if not actual:
-            print("No hay libros registrados.")
+    def contar(self):
+        actual = self.inicio
+        total = 0
         while actual:
-            actual.libro.MostrarInformacion()
+            total += 1
             actual = actual.siguiente
+        return total
+
+    def recorrer(self, funcion):
+        actual = self.inicio
+        index = 1
+        while actual:
+            funcion(actual.material, index)
+            actual = actual.siguiente
+            index += 1
