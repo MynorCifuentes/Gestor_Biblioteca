@@ -22,7 +22,7 @@ class LibroFisico(MaterialBiblioteca):
             print(f"No se puede prestar por más de {self.dias_max()} días.")
             return False
         self.setEstado("Prestado")
-        self.setDiasPrestamo(dias)
+        self.set_dias_prestamo(dias)
         print(f"Material prestado por {dias} días.")
         return True
 
@@ -31,7 +31,7 @@ class LibroFisico(MaterialBiblioteca):
             print("El material ya está disponible.")
             return False
         self.setEstado("Disponible")
-        self.setDiasPrestamo(0)
+        self.set_dias_prestamo(0)
         print("Material devuelto correctamente.")
         return True
 

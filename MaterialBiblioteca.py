@@ -26,7 +26,9 @@ class MaterialBiblioteca(ABC):
     
     def setEstado(self, estado):
         self.__estado = estado
-    
+
+    def set_dias_prestamo(self, dias):
+        self.__dias_prestamo = dias
 
     def getTitulo(self):
         return self.__titulo
@@ -36,6 +38,10 @@ class MaterialBiblioteca(ABC):
 
     def getEstado(self):
         return self.__estado
+    
+    def get_dias_prestamo(self):
+        return self.__dias_prestamo
+
     
     @abstractmethod
     def prestarMaterial(self, dias):

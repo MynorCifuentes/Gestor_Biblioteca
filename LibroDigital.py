@@ -22,7 +22,7 @@ class LibroDigital(MaterialBiblioteca):
             print(f"No se puede prestar por más de {self.dias_max()} días.")
             return False
         self.setEstado("Prestado")
-        self.setDiasPrestamo(dias)
+        self.set_dias_prestamo(dias)
         print(f"Material prestado por {dias} días.")
         return True
 
