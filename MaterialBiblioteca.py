@@ -4,15 +4,16 @@ import string
 
 
 class MaterialBiblioteca(ABC):
-    def __init__(self, id, titulo, autor, estado):
-        self.__id = id
+    def __init__(self, titulo, autor):
+        self.__id = self.setId()
         self.__titulo = titulo
         self.__autor = autor
-        self.__estado = estado
+        self.__estado = "Disponible"
+        self.__diasPrestado = 0
     
     def setId(self):
         caracteres = string.ascii_letters + string.digits
-        self._id = ''.join(random.choices(caracteres, k=8))
+        return ''.join(random.choices(caracteres, k=8))
 
     def getId(self):
         return self._id
@@ -38,15 +39,20 @@ class MaterialBiblioteca(ABC):
         return self.__estado
     
     @abstractmethod
-    def PrestarMaterial():
-        pass  
-    
-    @abstractmethod
-    def DevolverMaterial():
+    def PrestarMaterial(self, dias):
         pass
     
     @abstractmethod
-    def MostrarInformacion():
+    def dias_max(self): #Dias maximos, polimorfimo 
+        pass
+  
+    
+    @abstractmethod
+    def DevolverMaterial(self):
+        pass
+    
+    @abstractmethod
+    def MostrarInformacion(self):
         pass
 
     
