@@ -28,5 +28,5 @@ class listaMaterial:
         if not actual:
             print("No hay libros registrados.")
         while actual:
-            actual.libro.mostrar_info()
+            actual.libro.MostrarInformacion()
             actual = actual.siguiente

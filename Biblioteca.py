@@ -7,7 +7,7 @@ class Biblioteca:
     pass
 
 listaLibroFisico = listaMaterial()
-listaLibroDigital = listaMaterial
+listaLibroDigital = listaMaterial()
 
 def menu_principal():
     print("\n---------------------Bienvenido a la Biblioteca IPC2---------------------")
@@ -48,7 +48,7 @@ def menu_informacion_material():
     print("4] Volver al menú Gestión de Material")
 
 def registroLibroFisico():
-    id = "###############"
+    id = None
     titulo = input("Ingrese el título: ")
     autor = input(" Ingrese el autor: ")
     estado = "Disponible"
@@ -58,7 +58,7 @@ def registroLibroFisico():
     print(f'El libro, Titulo: {titulo}, Autor: {autor} ha sido agregado exitosamente.')
     
 def registroLibroDigital():
-    id = "###############"
+    id = None
     titulo = input("Ingrese el título: ")
     autor = input("Ingrese el autor: ")
     size = input("Ingrese el tamaño del libro digital: ")
@@ -68,7 +68,7 @@ def registroLibroDigital():
     print(f'El libro, Titulo: {titulo}, Autor: {autor} ha sido agregado exitosamente.')
 
 def prestarLibroFisico():
-    #Cambia el estado del objeto a "Prestado"
+    #Cambia el estado del objeto a "Prestado" 
     
     pass
 

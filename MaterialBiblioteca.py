@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+import random
+import string
+
 
 class MaterialBiblioteca(ABC):
     def __init__(self, id, titulo, autor, estado):
@@ -7,8 +10,13 @@ class MaterialBiblioteca(ABC):
         self.__autor = autor
         self.__estado = estado
     
-    def setId(self, id):
-        self.__id = id    
+    def setId(self):
+        caracteres = string.ascii_letters + string.digits
+        self._id = ''.join(random.choices(caracteres, k=8))
+
+    def getId(self):
+        return self._id
+
     
     def setTitulo(self, titulo):
         self.__titulo = titulo
@@ -19,9 +27,7 @@ class MaterialBiblioteca(ABC):
     def setEstado(self, estado):
         self.__estado = estado
     
-    def getId(self):
-        return self.__id
-    
+
     def getTitulo(self):
         return self.__titulo
 
@@ -42,3 +48,5 @@ class MaterialBiblioteca(ABC):
     @abstractmethod
     def MostrarInformacion():
         pass
+
+    

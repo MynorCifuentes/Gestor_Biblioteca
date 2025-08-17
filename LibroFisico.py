@@ -1,8 +1,13 @@
 from MaterialBiblioteca import *
+
 class LibroFisico(MaterialBiblioteca):
     def __init__(self, id, titulo, autor, estado, NoEjemplar):
+        if id is None:
+            self.setId()  # Genera el ID automáticamente si no se da
+            #id = self.getId()
         super().__init__(id, titulo, autor, estado)
         self.__noEjemplar = NoEjemplar
+       
         
     def PrestarMaterial(self):
         if self.getEstado() == "Disponible":
@@ -22,5 +27,5 @@ class LibroFisico(MaterialBiblioteca):
 
     def MostrarInformacion(self):
         print(f"---------------------Información del Libro Físico---------------------")
-        print(f"Título: {self.getTitulo()} \n Autor: {self.getAutor()} \n Estado: {self.getEstado()} \n Número de Ejemplar: {self.__noEjemplar}")
+        print(f"id: {self.getId()} \n Título: {self.getTitulo()} \n Autor: {self.getAutor()} \n Estado: {self.getEstado()} \n Número de Ejemplar: {self.__noEjemplar}")
 
