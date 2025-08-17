@@ -16,9 +16,8 @@ class MaterialBiblioteca(ABC):
         return ''.join(random.choices(caracteres, k=8))
 
     def getId(self):
-        return self._id
+        return self.__id
 
-    
     def setTitulo(self, titulo):
         self.__titulo = titulo
         
@@ -39,7 +38,7 @@ class MaterialBiblioteca(ABC):
         return self.__estado
     
     @abstractmethod
-    def PrestarMaterial(self, dias):
+    def prestarMaterial(self, dias):
         pass
     
     @abstractmethod
@@ -48,7 +47,7 @@ class MaterialBiblioteca(ABC):
   
     
     @abstractmethod
-    def DevolverMaterial(self):
+    def devolverMaterial(self):
         pass
     
     @abstractmethod

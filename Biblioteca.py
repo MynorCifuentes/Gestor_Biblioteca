@@ -1,164 +1,107 @@
-from MaterialBiblioteca import *
-from LibroFisico import * 
-from LibroDigital import * 
-from ListaMaterial import *
+from ListaMaterial import listaMaterial
+from LibroFisico import LibroFisico
+from LibroDigital import LibroDigital
 
 class Biblioteca:
-    pass
+    def __init__(self):
+        self.lista = listaMaterial()
 
-listaLibroFisico = listaMaterial()
-listaLibroDigital = listaMaterial()
+    def mostrar_menu(self):
+        print("\n-------------------Biblioteca IPC2 -------------------")
+        print("1. Registrar nuevo material")
+        print("2. Gestionar materiales")
+        print("3. Listar todos los materiales")
+        print("4. Salir")
 
-def menu_principal():
-    print("\n---------------------Bienvenido a la Biblioteca IPC2---------------------")
-    print("1] Registrar material bibliotecario")
-    print("2] Gestionar material bibliotecario")
-    print("3] Salir")
+    def registrar_material(self):
+        print("\nRegistrar material")
+        print("a) Libro Físico")
+        print("b) Libro Digital")
+        tipo = input("Seleccione tipo (a/b): ").strip().lower()
+        titulo = input("Título: ")
+        autor = input("Autor: ")
+        if tipo == 'a':
+            NoEjemplar = input("Número de ejemplar: ")
+            libro = LibroFisico(titulo, autor, NoEjemplar)
+            self.lista.agregarMaterial(libro)
+            print(f"Libro Físico registrado con código: {libro.getId()}")
+        elif tipo == 'b':
+            size = input("Tamaño de archivo (MB): ")
+            try:
+                size = float(size)
+            except ValueError:
+                print("Tamaño inválido.")
+                return
+            libro = LibroDigital(titulo, autor, size)
+            self.lista.agregarMaterial(libro)
+            print(f"Libro Digital registrado con código: {libro.getId()}")
+        else:
+            print("Opción inválida.")
 
-def menu_registro_material():
-    print("\n---------------------¿Qué tipo de libro desea registrar?---------------------")
-    print("1] Libros Fisicos")
-    print("2] Libros Digitales")
-    print("3] Regresar al menu principal")
+    def gestionar_material(self):
+        total = self.lista.contar()
+        if total == 0:
+            print("No hay materiales registrados.")
+            return
+        print("\n-------------------Lista de Materiales-------------------")
+        def mostrar(material, idx):
+            print(f"{idx}. {material.getTitulo()} ({material.getAutor()}) - {material.getEstado()}")
+        self.lista.recorrer(mostrar)
+        try:
+            seleccion = int(input("Seleccione el número del material a gestionar: "))
+        except ValueError:
+            print("Selección inválida.")
+            return
+        material = self.lista.obtenerPorPosicion(seleccion)
+        if material is None:
+            print("No existe material en esa posición.")
+            return
+        print("\n--- Gestión de Material ---")
+        print("1. Prestar material")
+        print("2. Devolver material")
+        print("3. Mostrar información")
+        opcion = input("Seleccione opción: ").strip()
+        if opcion == '1':
+            try:
+                dias = int(input("Ingrese número de días de préstamo: "))
+            except ValueError:
+                print("Días inválidos.")
+                return
+            material.prestarMaterial(dias)
+        elif opcion == '2':
+            material.devolverMaterial()
+        elif opcion == '3':
+            material.MostrarInformacion()
+        else:
+            print("Opción inválida.")
 
-def menu_gestion_material():
-    print("\n---------------------Gestión de Material Bibliotecario---------------------")
-    print("1] Prestar material")
-    print("2] Devolver material")
-    print("3] Consultar información de cada material")
-    print("4] Volver al menú principal")
+    def listar_materiales(self):
+        print("\n--- Materiales registrados ---")
+        if self.lista.contar() == 0:
+            print("No hay materiales registrados.")
+            return
+        def mostrar(material, idx):
+            print(f"{idx}. {material.getTitulo()} ({material.getAutor()}) - {material.getEstado()}")
+            material.MostrarInformacion()
+            print("-----------------")
+        self.lista.recorrer(mostrar)
 
-def menu_prestamo_material():
-    print("\n---------------------Préstamo Material---------------------")
-    print("1] Libro Físico")
-    print("2] Libro Digital")
-    print("3] Volver al menú Gestión de Material")
-
-def menu_devolver_material():
-    print("\n---------------------Devolución Material---------------------")
-    print("1] Libro Físico")
-    print("2] Libro Digital")
-    print("3] Volver al menú Gestión de Material")
-
-def menu_informacion_material():
-    print("\n---------------------Información Material---------------------")
-    print("1] Catálogo Libros Físicos")
-    print("2] Catálogo Libros Digitales")
-    print("3] Catálogo Completo")
-    print("4] Volver al menú Gestión de Material")
-
-def registroLibroFisico():
-    id = None
-    titulo = input("Ingrese el título: ")
-    autor = input(" Ingrese el autor: ")
-    estado = "Disponible"
-    noEjemplar = "1" #Se tiene que agregar de manera automatica
-    libroFisico = LibroFisico(id,titulo,autor,estado,noEjemplar)
-    listaLibroFisico.agregar(libroFisico)
-    print(f'El libro, Titulo: {titulo}, Autor: {autor} ha sido agregado exitosamente.')
-    
-def registroLibroDigital():
-    id = None
-    titulo = input("Ingrese el título: ")
-    autor = input("Ingrese el autor: ")
-    size = input("Ingrese el tamaño del libro digital: ")
-    estado = "Disponible"
-    libroDigital = LibroDigital(id,titulo,autor,estado, size) #El tamaño se debe ingresar
-    listaLibroDigital.agregar(libroDigital)
-    print(f'El libro, Titulo: {titulo}, Autor: {autor} ha sido agregado exitosamente.')
-
-def prestarLibroFisico():
-    #Cambia el estado del objeto a "Prestado" 
-    
-    pass
-
-def prestarLibroDigital():
-    pass
-
-def devolverLibroFisico():
-    pass
-
-def devolverLibroDigital():
-    pass
-
-def informacionLibroFisico():
-    listaLibroFisico.mostrar_todos()
-
-def informacionLibroDigital():
-    listaLibroDigital.mostrar_todos()
-
-def informacionTodo():
-
-    pass
-
-def main(): #Funcion Principal 
-    while True:  
-        menu_principal()
-        opcion = input("Seleccione una opción: ")
-        if opcion == "1": #Menu de registro de Material
-            while True:
-                menu_registro_material()
-                OpcionRegistro = input("¿Qué tipo de libro desea registrar?")
-                if OpcionRegistro == "1": #Registro libro fisico
-                    registroLibroFisico()
-                elif OpcionRegistro == "2": #Registro libro digital
-                    registroLibroDigital()
-                elif OpcionRegistro == "3": #Salir
-                    break
-                else:
-                    print("\nOpción no válida.")
-
-        elif opcion == "2": #Menu de Gestion de Material
-            while True:
-                menu_gestion_material()
-                opcionGestion = input("Seleccione una opción: ")
-                if opcionGestion == "1": #Menu prestar Material
-                    while True:
-                        menu_prestamo_material()
-                        OpcionPrestamo = input("¿Qué tipo de libro desea Prestar?")
-                        if OpcionPrestamo == "1": #Prestamo libro fisico
-                            prestarLibroFisico()
-                        elif OpcionPrestamo == "2": #Prestamo libro digital
-                            prestarLibroDigital()
-                        elif OpcionPrestamo == "3": #Salir
-                            break
-                        else:
-                            print("\nOpción no válida.")
-                elif opcionGestion == "2": #Menu devolver Material 
-                    while True:
-                        menu_devolver_material()
-                        OpcionDevolver = input("¿Qué tipo de libro desea devolver?")
-                        if OpcionDevolver == "1": #Devolver libro fisico
-                            devolverLibroFisico()
-                        elif OpcionDevolver == "2": #Devolver libro digital
-                            devolverLibroDigital()
-                        elif OpcionDevolver == "3": #Salir
-                            break
-                        else:
-                            print("\nOpción no válida.")
-                elif opcionGestion == "3": #Menu consultar Informacion
-                    while True:
-                        menu_informacion_material()
-                        OpcionInformacion = input("¿Qué tipo de libro desea devolver?")
-                        if OpcionInformacion == "1": #Informacion libro fisico
-                            informacionLibroFisico()
-                        elif OpcionInformacion == "2": #Informacion libro digital
-                            informacionLibroDigital()
-                        elif OpcionInformacion == "3": #Informacion Catálogo Completo
-                            informacionTodo()
-                        elif OpcionInformacion == "4": #Salir
-                            break
-                        else:
-                            print("\nOpción no válida.")
-                elif opcionGestion == "4": #Salir
-                    break
-                else:
-                    print("Opción no válida.")
-        elif opcion == "3": #Salir
-            print("¡Gracias por visitar la Biblioteca IPC2!")
+def main():
+    biblioteca = Biblioteca()
+    while True:
+        biblioteca.mostrar_menu()
+        opcion = input("Seleccione opción: ").strip()
+        if opcion == '1':
+            biblioteca.registrar_material()
+        elif opcion == '2':
+            biblioteca.gestionar_material()
+        elif opcion == '3':
+            biblioteca.listar_materiales()
+        elif opcion == '4':
+            print("Saliendo del sistema. ¡Hasta luego!")
             break
         else:
-            print("\nOpción no válida.")
+            print("Opción inválida.")
 
 if __name__ == "__main__":
     main()

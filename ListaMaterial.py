@@ -19,7 +19,7 @@ class listaMaterial:
         index = 1
         while actual:
             if index == posicion:
-                return actual.material
+                return actual.libro
             actual = actual.siguiente
             index += 1
         return None
@@ -36,6 +36,6 @@ class listaMaterial:
         actual = self.inicio
         index = 1
         while actual:
-            funcion(actual.material, index)
+            funcion(actual.libro, index)
             actual = actual.siguiente
             index += 1

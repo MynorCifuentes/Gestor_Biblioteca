@@ -1,7 +1,7 @@
 from MaterialBiblioteca import *
 class LibroDigital(MaterialBiblioteca):
     def __init__(self, titulo, autor, size):
-        super.__init__(titulo, autor)
+        super().__init__(titulo, autor)
         self.__size = size
 
     def getSize(self):
@@ -14,7 +14,7 @@ class LibroDigital(MaterialBiblioteca):
         return 3
 
 
-    def prestar(self, dias):
+    def prestarMaterial(self, dias):
         if self.getEstado() == "Prestado":
             print("El material ya está prestado.")
             return False
@@ -26,7 +26,7 @@ class LibroDigital(MaterialBiblioteca):
         print(f"Material prestado por {dias} días.")
         return True
 
-    def devolver(self):
+    def devolverMaterial(self):
         if self.getEstado() == "Disponible":
             print("El libro ya está disponible.")
             return False
