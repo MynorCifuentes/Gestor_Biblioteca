@@ -1,22 +1,42 @@
 from MaterialBiblioteca import *
+
 class LibroFisico(MaterialBiblioteca):
-    def __init__(self, id, titulo, autor, estado, NoEjemplar):
-        super.__init__(id, titulo, autor, estado)
+    def __init__(self, titulo, autor, NoEjemplar):
+        super().__init__(titulo, autor)
         self.__noEjemplar = NoEjemplar
-        
-    def PrestarMaterial():
-        pass
-    
-    def DevolverMaterial():
-        pass
-    
-    def MostrarInformacion():
-        pass
-        
-        
 
+    def get_NoEjemplar(self):
+        return self.__noEjemplar
+
+    def set_NoEjemplar(self, numero):
+        self.__noEjemplar = numero
+
+    def dias_max(self):
+        return 7
         
+    def prestarMaterial(self, dias):
+        if self.getEstado() == "Prestado":
+            print("El material ya está prestado.")
+            return False
+        if dias > self.dias_max():
+            print(f"No se puede prestar por más de {self.dias_max()} días.")
+            return False
+        self.setEstado("Prestado")
+        self.set_dias_prestamo(dias)
+        print(f"Material prestado por {dias} días.")
+        return True
+
+    def devolverMaterial(self):
+        if self.getEstado() == "Disponible":
+            print("El material ya está disponible.")
+            return False
+        self.setEstado("Disponible")
+        self.set_dias_prestamo(0)
+        print("Material devuelto correctamente.")
+        return True
 
 
-        
-        
+    def MostrarInformacion(self):
+        print(f"---------------------Información del Libro Físico---------------------")
+        print(f"id: {self.getId()} \n Título: {self.getTitulo()} \n Autor: {self.getAutor()} \n Número de Ejemplar :{self.get_NoEjemplar()} \n Estado: {self.getEstado()} \n Días Máximos: {self.dias_max()}")
+
