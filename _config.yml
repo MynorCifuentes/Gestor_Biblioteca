@@ -1,0 +1,8 @@
+title: Your Site Title
+description: A description of your site
+remote_theme: pages-themes/merlot@v0.2.0
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+
